@@ -9,3 +9,5 @@ Solution for:
 - irrigation plan for all plants
 - graph for growth and success rate
 more addons later
+
+![https://www.python.org](http://ForTheBadge.com/images/badges/made-with-python.svg)
