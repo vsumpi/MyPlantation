@@ -1,19 +1,42 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # MyPlantation App 🌱
+# Just updated: SQLite -> MariaDB SQL 2024.01.15 16:01
 
 from os import curdir
-import sqlite3
+import pymysql
 
 # Inicialization 🚀
-print("Connect:", end="\rConnect:")
-con = sqlite3.connect("myfarm.db")
-print("OK")
-print("Create:", end="\rCreate:")
-print("OK")
-cur = con.cursor()
+# Source:https://pymysql.readthedocs.io/en/latest/user/examples.html
+# Connect to the database
+import pymysql
+
+connection = pymysql.connect(host='localhost',
+                             user='sumpi',
+                             password='admin',
+                             database='db',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
+
+with connection:
+    with connection.cursor() as cursor:
+        # Create a new record
+        sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
+        cursor.execute(sql, ('sumpi@localhost', 'admin'))
+
+    # connection is not autocommit by default. So you must commit to save
+    # your changes.
+    connection.commit()
+
+    with connection.cursor() as cursor:
+        # Read a single record
+        sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
+        cursor.execute(sql, ('sumpi@localhost',))
+        result = cursor.fetchone()
+        print(result)
 
 
-# Create table for user ➕ (multiuser support)
+
+#  Create table for user ➕ (multiuser support)
 def make():
     cur.execute(table)
     con.commit()
