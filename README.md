@@ -1,4 +1,4 @@
-# MyPlantation 🌱
+# MyPlantation 🌱 [W.I.P.]
 I'm working on a python app that would help with my spring plantation project. :smile:
 First time using SQLite for a DB and this is my second biggest project IRL.
 
